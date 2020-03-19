@@ -75,7 +75,8 @@ prompt_segment() {
 # End the prompt, closing any open segments
 prompt_end() {
   if [[ -n $CURRENT_BG ]]; then
-    echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+    #echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+    echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR\n%{%F{default}%}╰─ $SEGMENT_SEPARATOR"
   else
     echo -n "%{%k%}"
   fi
@@ -89,7 +90,8 @@ prompt_end() {
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)%n@%m"
+    #prompt_segment black default "%(!.%{%F{yellow}%}.)%n@%m"
+    prompt_segment black default "\n%(!.%{%F{default}%}.)╭─ %W%t"
   fi
 }
 
